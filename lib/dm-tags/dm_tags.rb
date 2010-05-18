@@ -1,17 +1,6 @@
 module DataMapper
-  module Resource
-    class << self
-      # FIXME: remove alias method chain like code
-      alias_method :old_included, :included
-      def included(receiver)
-        old_included(receiver)
-        receiver.send(:include, DataMapper::Tags)
-      end
-    end
-  end
-end
-module DataMapper
   module Tags
+
     module SingletonMethods
       # Class Methods
       def tagged_with(string, options = {})
@@ -117,5 +106,9 @@ module DataMapper
       base.send(:include, InstanceMethods)
       base.extend(ClassMethods)
     end
-  end
-end
+
+  end # module Tags
+
+  Model.append_inclusions DataMapper::Tags
+
+end # module DataMapper
