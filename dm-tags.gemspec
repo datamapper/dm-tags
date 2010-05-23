@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new("> 1.3.1") if s.respond_to? :required_rubygems_version=
   s.authors = ["Bobby Calderwood"]
-  s.date = %q{2010-05-19}
+  s.date = %q{2010-05-23}
   s.description = %q{This package brings tagging to DataMapper.  It is inspired by Acts As Taggable On by Michael Bleigh, github's mbleigh.  Props to him for the contextual tagging based on Acts As Taggable on Steroids.}
   s.email = %q{bobby_calderwood [a] me [d] com}
   s.extra_rdoc_files = [
@@ -43,7 +43,7 @@ Gem::Specification.new do |s|
      "tasks/yard.rake",
      "tasks/yardstick.rake"
   ]
-  s.homepage = %q{http://github.com/datamapper/dm-more/tree/master/dm-tags}
+  s.homepage = %q{http://github.com/datamapper/dm-tags}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.rubyforge_project = %q{datamapper}
