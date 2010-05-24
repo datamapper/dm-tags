@@ -15,7 +15,7 @@ describe "Taggable" do
         @taggable.tag_taggings.new(:tag => Tag.create(:name => name))
       end
 
-      @taggable.save.should be_true
+      @taggable.save.should be(true)
 
       @taggable = @taggable.model.get!(@taggable.key)
       @taggable.tag_list.should == tag_names
@@ -38,15 +38,15 @@ describe "Taggable" do
       tag3 = Tag.create(:name => 'tag3')
       @taggable = TaggedModel.new
       @taggable.tag_list = 'tag1, tag2, tag3'
-      @taggable.save.should be_true
+      @taggable.save.should be(true)
       @taggable.tags.sort_by{|tag| tag.id}.should == [tag1, tag2, tag3]
       @taggable.tag_list = 'tag1, tag2'
-      @taggable.save.should be_true # Should dirty the model when changed.
+      @taggable.save.should be(true) # Should dirty the model when changed.
       pending do
         @taggable.tags.sort_by{|tag| tag.id}.should == [tag1, tag2]
       end
       @taggable.tag_list = 'tag3, tag4'
-      @taggable.save.should be_true
+      @taggable.save.should be(true)
       @taggable = @taggable.model.get(*@taggable.key)
       pending do
         @taggable.tags.sort_by{|tag| tag.id}.should == [tag3, Tag.first(:name => 'tag4')]
@@ -74,8 +74,8 @@ describe "Taggable" do
         @taggable.tags.size.should == 3
       end
       @taggable.add_tag("tag-4")
-      @taggable.tag_list.include?("tag-4").should be_true
-      @taggable.tag_list.include?("tag-1").should be_true
+      @taggable.tag_list.include?("tag-4").should be(true)
+      @taggable.tag_list.include?("tag-1").should be(true)
       @taggable.save
       @taggable.tags.size.should == 4
     end
@@ -121,8 +121,8 @@ describe "Taggable" do
 
 
     it "should have a class method .taggable? which returns true if tagging is defined, and false otherwise" do
-      UntaggedModel.taggable?.should be_false
-      TaggedModel.taggable?.should be_true
+      UntaggedModel.taggable?.should be(false)
+      TaggedModel.taggable?.should be(true)
     end
 
     it 'should return an empty list if tag is not present (should not continue on nil tag)' do
@@ -146,9 +146,9 @@ describe "Taggable" do
 
     it "should have an instance method #taggable? which returns the same as the instance's class would" do
       UntaggedModel.new.taggable?.should == UntaggedModel.taggable?
-      UntaggedModel.new.taggable?.should be_false
+      UntaggedModel.new.taggable?.should be(false)
       TaggedModel.new.taggable?.should == TaggedModel.taggable?
-      TaggedModel.new.taggable?.should be_true
+      TaggedModel.new.taggable?.should be(true)
     end
 
     it 'should destroy associated taggings when destroyed' do
