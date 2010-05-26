@@ -8,8 +8,8 @@ describe Tagging do
     @tagged_resource = TaggedModel.create
   end
 
-  it "should be a model which includes DataMapper::Resource" do
-    Tagging.should include(DataMapper::Resource)
+  it "should be a model which includes DataMapper::Model" do
+    Tagging.should be_kind_of(DataMapper::Model)
   end
 
   it "should validate the presence of tag_id, taggable_id, taggable_type and tag_context" do
