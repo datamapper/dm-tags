@@ -59,7 +59,7 @@ module DataMapper
               @#{singular}_list = string.to_s.split(',').map { |name| name.gsub(/[^\\w\\s_-]/i, '').strip }.uniq.sort
             end
 
-            alias #{singular}_collection= #{singular}_list=
+            alias_method :#{singular}_collection=, :#{singular}_list=
 
             def update_#{association}
               self.#{association} = #{singular}_list.map do |name|
