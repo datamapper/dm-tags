@@ -6,7 +6,7 @@ describe Tag do
   end
 
   it "should have many Taggings" do
-    Tag.relationships.should have_key(:taggings)
+    Tag.relationships.named?(:taggings).should be(true)
   end
 
   it "should validate the presence of name" do
