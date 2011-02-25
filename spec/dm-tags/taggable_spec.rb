@@ -33,24 +33,26 @@ describe "Taggable" do
 
     it "should set the associated collection of tags to those whose names
         are in the tag list upon saving, creating and deleting as necessary" do
-      tag1 = Tag.create(:name => 'tag1')
-      tag2 = Tag.create(:name => 'tag2')
-      tag3 = Tag.create(:name => 'tag3')
-      @taggable = TaggedModel.new
-      @taggable.tag_list = 'tag1, tag2, tag3'
-      @taggable.save.should be(true)
-      @taggable.tags.sort_by{|tag| tag.id}.should == [tag1, tag2, tag3]
-      @taggable.tag_list = 'tag1, tag2'
-      @taggable.save.should be(true) # Should dirty the model when changed.
-      pending do
-        @taggable.tags.sort_by{|tag| tag.id}.should == [tag1, tag2]
-      end
-      @taggable.tag_list = 'tag3, tag4'
-      @taggable.save.should be(true)
-      @taggable = @taggable.model.get(*@taggable.key)
-      pending do
-        @taggable.tags.sort_by{|tag| tag.id}.should == [tag3, Tag.first(:name => 'tag4')]
-        @taggable.skills.sort_by{|skill| skill.id}.should_not == [tag3, Tag.first(:name => 'tag4')]
+      pending_if 'rubinius causes the queries to become mangled', defined?(RUBY_ENGINE) && RUBY_ENGINE == 'rbx' do
+        tag1 = Tag.create(:name => 'tag1')
+        tag2 = Tag.create(:name => 'tag2')
+        tag3 = Tag.create(:name => 'tag3')
+        @taggable = TaggedModel.new
+        @taggable.tag_list = 'tag1, tag2, tag3'
+        @taggable.save.should be(true)
+        @taggable.tags.sort_by{|tag| tag.id}.should == [tag1, tag2, tag3]
+        @taggable.tag_list = 'tag1, tag2'
+        @taggable.save.should be(true) # Should dirty the model when changed.
+        pending do
+          @taggable.tags.sort_by{|tag| tag.id}.should == [tag1, tag2]
+        end
+        @taggable.tag_list = 'tag3, tag4'
+        @taggable.save.should be(true)
+        @taggable = @taggable.model.get(*@taggable.key)
+        pending do
+          @taggable.tags.sort_by{|tag| tag.id}.should == [tag3, Tag.first(:name => 'tag4')]
+          @taggable.skills.sort_by{|skill| skill.id}.should_not == [tag3, Tag.first(:name => 'tag4')]
+        end
       end
     end
 
