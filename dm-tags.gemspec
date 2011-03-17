@@ -7,9 +7,9 @@ Gem::Specification.new do |s|
   s.name = %q{dm-tags}
   s.version = "1.1.0"
 
-  s.required_rubygems_version = Gem::Requirement.new("> 1.3.1") if s.respond_to? :required_rubygems_version=
+  s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Bobby Calderwood"]
-  s.date = %q{2011-03-10}
+  s.date = %q{2011-03-16}
   s.description = %q{This package brings tagging to DataMapper.  It is inspired by Acts As Taggable On by Michael Bleigh, github's mbleigh.  Props to him for the contextual tagging based on Acts As Taggable on Steroids.}
   s.email = %q{bobby_calderwood [a] me [d] com}
   s.extra_rdoc_files = [
