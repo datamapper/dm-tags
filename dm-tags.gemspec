@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new("> 1.3.1") if s.respond_to? :required_rubygems_version=
   s.authors = ["Bobby Calderwood"]
-  s.date = "2011-09-05"
+  s.date = "2011-09-09"
   s.description = "This package brings tagging to DataMapper.  It is inspired by Acts As Taggable On by Michael Bleigh, github's mbleigh.  Props to him for the contextual tagging based on Acts As Taggable on Steroids."
   s.email = "bobby_calderwood [a] me [d] com"
   s.extra_rdoc_files = [
